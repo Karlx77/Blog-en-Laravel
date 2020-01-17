@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +33,7 @@ class HomeController extends Controller
                                           ->select('users.*','profiles.*')
                                           ->where(['profiles.user_id'=> $user_id])
                                           ->first();
-        return view('home',['profile'=>$profile]);
+        $post = Post::all();
+        return view('home',compact('profile','post'));
     }
 }
