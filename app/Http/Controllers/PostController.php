@@ -38,4 +38,13 @@ class PostController extends Controller
         $post->save();
         return redirect('/home')->with('response','Post Published Successfully');
     }
+
+    public function view($post_id){
+        $post = Post::where('id','=', $post_id)->get();
+        return view('posts.view',compact('post'));
+    }
+
+    public function edit($post_id){
+        return $post_id;
+    }
 }

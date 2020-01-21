@@ -30,3 +30,8 @@ Route::post('/addCategory','CategoryController@addCategory');
 Route::post('/addProfile','ProfileController@addProfile');
 
 Route::post('/addPost','PostController@addPost');
+
+Route::get('/view/{id}','PostController@view')->name('posts.view');
+Route::get('/edit/{id}','PostController@edit')->name('posts.edit');
+
+
