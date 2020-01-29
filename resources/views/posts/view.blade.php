@@ -18,7 +18,7 @@
                         <div class="col-md-4">
                             <ul>
                                 @foreach($categories as $item)
-                                <li class="list-group-item"><a href="" class=" btn btn-link">{{$item->category}}</a> </li>
+                                <li class="list-group-item"><a href="{{route('posts.category',$item)}}" class=" btn btn-link">{{$item->category}}</a> </li>
                                 @endforeach
                             </ul>
                         </div>

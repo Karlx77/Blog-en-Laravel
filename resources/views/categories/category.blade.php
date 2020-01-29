@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Dashboard</div>
                         @if(count($errors)>0)
@@ -18,12 +18,13 @@
                                 {{session('response')}}
                             </div>
                         @endif
-                    <div class="card-body">
+                    <div class="card-body row">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
                             </div>
                         @endif
+                        <div class="col-md-6">
                             <form method="POST" action="{{ url('/addCategory') }}">
                                 @csrf
 
@@ -48,6 +49,15 @@
                                     </div>
                                 </div>
                             </form>
+                            </div>
+                            <div class="col-md-4">
+                            <ul>
+                                @foreach($categories as $item)
+                                    <li class="list-group-item">{{ $count++.' '.$item->category}}</li>
+                                @endforeach
+                            </ul>
+                            </div>
+
                     </div>
                 </div>
             </div>

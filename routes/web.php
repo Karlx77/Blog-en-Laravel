@@ -38,3 +38,5 @@ Route::get('/edit/{id}','PostController@edit')->name('posts.edit');
 Route::put('/edit/{id}','PostController@editPost')->name('posts.update');
 
 Route::delete('/delete/{id}','PostController@deletePost')->name('posts.delete');
+
+Route::get('/category/{id}','PostController@category')->name('posts.category');

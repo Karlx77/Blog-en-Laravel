@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function category(){
-        return view('categories.category');
+        $categories = Category::orderBy('category','asc')->get();
+        $count = 1;
+
+        return view('categories.category', compact('categories','count'));
     }
 
     public function addCategory(Request $request){

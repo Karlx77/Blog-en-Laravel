@@ -33,7 +33,7 @@ class HomeController extends Controller
                                           ->select('users.*','profiles.*')
                                           ->where(['profiles.user_id'=> $user_id])
                                           ->first();
-        $posts = Post::all();
+        $posts = Post::paginate(1);
         return view('home',compact('profile','posts'));
     }
 }

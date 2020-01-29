@@ -7,6 +7,7 @@ use App\Category;
 use DemeterChain\C;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\URL;
 
@@ -86,4 +87,14 @@ class PostController extends Controller
 
     }
 
+    public function category($id){
+        $categories=Category::all();
+        $posts = DB::table('posts')->join('categories','posts.category_id','=','categories.id')
+        ->select('posts.*','categories.*')
+        ->where(['categories.id'=>$id])
+        ->get();
+////        return $posts;
+////        exit();
+        return view('categories.categoriesPosts',compact('categories','posts'));
+    }
 }
