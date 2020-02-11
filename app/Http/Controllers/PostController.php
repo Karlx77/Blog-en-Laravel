@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Dislike;
+use App\Like;
 use App\Post;
 use App\Category;
 use DemeterChain\C;
@@ -43,8 +45,15 @@ class PostController extends Controller
 
     public function view($post_id){
         $posts = Post::where('id','=', $post_id)->get();
+        $likePost = Post::findOrFail($post_id);
+        $likeCtr = Like::where([
+            'post_id'=> $likePost->id
+        ])->count();
+        $disCtr = Dislike::where([
+            'post_id' => $likePost->id
+        ])->count();
         $categories = Category::orderBy('category','asc')->get();
-        return view('posts.view',compact('posts','categories'));
+        return view('posts.view',compact('posts','categories','likeCtr','disCtr'));
     }
 
     public function edit($post_id){
@@ -96,5 +105,50 @@ class PostController extends Controller
 ////        return $posts;
 ////        exit();
         return view('categories.categoriesPosts',compact('categories','posts'));
+    }
+
+    public function like($id){
+        $logged_user = Auth::user()->id;
+        $like_user = Like::where([
+            'user_id' => $logged_user,
+            'post_id' => $id
+        ])->first();
+
+        if (empty($like_user -> user_id)){
+            $user_id = Auth::user()->id;
+            $email = Auth::user()->email;
+            $post_id=$id;
+            $like = new Like();
+            $like->user_id = $user_id;
+            $like->email = $email;
+            $like->post_id = $post_id;
+            $like->save();
+            return redirect('/view/',$id);
+        }
+        else{
+            return redirect('/view/',$id);
+        }
+    }
+    public function dislike($id){
+        $logged_user = Auth::user()->id;
+        $dlike_user = Dislike::where([
+            'user_id' => $logged_user,
+            'post_id' => $id
+        ])->first();
+
+        if (empty($dlike_user -> user_id)){
+            $user_id = Auth::user()->id;
+            $email = Auth::user()->email;
+            $post_id=$id;
+            $dislike = new Dislike();
+            $dislike->user_id = $user_id;
+            $dislike->email = $email;
+            $dislike->post_id = $post_id;
+            $dislike->save();
+            return redirect('/view/',$id);
+        }
+        else{
+            return redirect('/view/',$id);
+        }
     }
 }

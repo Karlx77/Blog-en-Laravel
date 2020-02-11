@@ -31,12 +31,12 @@
                                     <ul class="nav nav-pills">
                                         <li role="presentation">
                                             <a class="btn btn-link" href="{{url('like',$post)}}">
-                                                <span class=" fa fa-thumbs-up"> Like()</span>
+                                                <span class=" fa fa-thumbs-up"> Like({{$likeCtr}})</span>
                                             </a>
                                         </li>
                                         <li role="presentation">
-                                            <a class="btn btn-link" href="url('like',$post)">
-                                                <span class="fa fa-thumbs-down"> Dislike()</span>
+                                            <a class="btn btn-link" href="{{url('dislike',$post)}}">
+                                                <span class="fa fa-thumbs-down"> Dislike({{$disCtr}})</span>
                                             </a>
                                         </li>
                                         <li role="presentation">
