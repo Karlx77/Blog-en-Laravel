@@ -45,14 +45,14 @@ class PostController extends Controller
     public function view($post_id){
         $posts = Post::where('id','=', $post_id)->get();
         $likePost = Post::findOrFail($post_id);
-        $likeCtr = Like::where([
-            'post_id'=> $likePost->id
-        ])->count();
-        $disCtr = Dislike::where([
+//        $likeCtr = Like::where([
+//            'post_id'=> $likePost->id
+//        ])->count();
+        $disCtr = Like::where([
             'post_id' => $likePost->id
         ])->count();
 //        $categories = Category::orderBy('category','asc')->get();
-        return view('posts.view',compact('posts','likeCtr','disCtr'));
+        return view('posts.view',compact('posts','disCtr'));
     }
 
     public function edit($post_id){
@@ -107,7 +107,7 @@ class PostController extends Controller
 
      public function dislike($id){
         $logged_user = Auth::user()->id;
-        $dlike_user = Dislike::where([
+        $dlike_user = Like()::where([
             'user_id' => $logged_user,
             'post_id' => $id
         ])->first();
@@ -116,7 +116,7 @@ class PostController extends Controller
             $user_id = Auth::user()->id;
             $email = Auth::user()->email;
             $post_id=$id;
-            $dislike = new Dislike();
+            $dislike = new Like();
             $dislike->user_id = $user_id;
             $dislike->email = $email;
             $dislike->post_id = $post_id;
