@@ -35,7 +35,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a href="{{ url('/home') }}" class="navbar-brand">Home </a></li>
-                        <li><a href="{{ url('/post') }}" class="navbar-brand">Add Post</a></li>
+                        @if ((\auth())->check())
+                            <li><a href="{{ url('/post') }}" class="navbar-brand">Add Post</a></li>
+                        @else
+
+                        @endif
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -59,7 +64,6 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('/profile') }}">Profile</a>
-                                    <a class="dropdown-item" href="{{ url('/category') }}">Category</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
