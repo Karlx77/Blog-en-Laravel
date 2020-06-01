@@ -39,7 +39,7 @@ Route::put('/edit/{id}','PostController@editPost')->name('posts.update');
 
 Route::delete('/delete/{id}','PostController@deletePost')->name('posts.delete');
 
-Route::get('/category/{id}','PostController@category')->name('posts.category');
+Route::get('/category/{id}','PostController@category')->name('posts.category'); //
 
 Route::post('/like','PostController@like');
 
