@@ -46,25 +46,6 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="category_id" class="col-md-4 col-form-label text-md-right">{{ __('Enter Category') }}</label>
-
-                                    <div class="col-md-6">
-                                        <select id="category_id" type="text" class="form-control @error('category_id') is-invalid @enderror" name="category_id" required autocomplete="category_id">
-                                        <option value="">Select
-                                        @if(count($category)>0)
-                                            @foreach($category->all() as $categories)
-                                                    <option value="{{$categories->id}}">{{ $categories->category }}</option>
-                                            @endforeach
-                                        @endif
-                                        </select>
-                                        @error('category_id')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
                                     <label for="post_image" class="col-md-4 col-form-label text-md-right">{{ __('Enter Picture') }}</label>
 
                                     <div class="col-md-6">
