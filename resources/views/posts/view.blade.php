@@ -29,11 +29,11 @@
                                                 <h4>{{ $post->post_title }}</h4>
                                                 <p>{{$post->post_body}}</p>
                                                 <ul class="nav nav-pills">
-                                                    <li role="presentation">
-                                                        <a class="btn btn-link" href="">
-                                                            <img src="{{url('images/like.png')}}" alt="" style="height:35px;width:35px; ">
-                                                        </a>
-                                                    </li>
+                                                <li role="presentation">
+                                            <a class="btn btn-link" href="{{route('dislike',$post->pos)}}">
+                                                <img src="{{url('images/like.png')}}" alt="" style="height:35px;width:35px; ">
+                                            </a>
+                                        </li>
                                                     <li role="presentation">
                                                         <a class="btn btn-link" href="">
                                                             <img src="{{url('images/message.png')}}" alt="" style="height:35px;width:35px; ">
@@ -48,7 +48,6 @@
                             @else
                                 <p>No Post Available</p>
                             @endif
-                            </div>
                         </div>
                     </div>
                 </div>
