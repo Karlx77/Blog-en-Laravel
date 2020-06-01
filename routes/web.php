@@ -41,6 +41,6 @@ Route::delete('/delete/{id}','PostController@deletePost')->name('posts.delete');
 
 Route::get('/category/{id}','PostController@category')->name('posts.category');
 
-Route::get('/like/{id}','PostController@like');
+Route::post('/like','PostController@like');
 
 Route::get('/dislike/{id}','PostController@dislike');

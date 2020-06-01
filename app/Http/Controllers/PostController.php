@@ -107,7 +107,8 @@ class PostController extends Controller
         return view('categories.categoriesPosts',compact('categories','posts'));
     }
 
-    public function like($id){
+    public function like(Request $request){
+        dd($request);
         $logged_user = Auth::user()->id;
         $like_user = Like::where([
             'user_id' => $logged_user,
@@ -123,7 +124,7 @@ class PostController extends Controller
             $like->email = $email;
             $like->post_id = $post_id;
             $like->save();
-            return redirect('/view/',$id);
+            return view('/view/',$id);
         }
         else{
             return redirect('/view/',$id);

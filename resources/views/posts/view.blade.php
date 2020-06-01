@@ -30,6 +30,7 @@
                                     <p>{{$post->post_body}}</p>
                                     <ul class="nav nav-pills">
                                         <li role="presentation">
+                                            <form action="{{}}"></form>
                                             <a class="btn btn-link" href="{{url('like',$post)}}">
                                                 <span class=" fa fa-thumbs-up"> Like({{$likeCtr}})</span>
                                             </a>
