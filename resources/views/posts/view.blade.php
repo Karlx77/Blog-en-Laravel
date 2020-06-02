@@ -29,7 +29,7 @@
                                     <p>{{$post->post_body}}</p>
                                     <ul class="nav nav-pills">
                                         <li role="presentation">
-                                            <a class="btn btn-link" href="">
+                                            <a class="btn btn-link" href="{{route('dislike',$post->pos)}}">
                                                 <img src="{{url('images/like.png')}}" alt="" style="height:35px;width:35px; ">
                                             </a>
                                         </li>

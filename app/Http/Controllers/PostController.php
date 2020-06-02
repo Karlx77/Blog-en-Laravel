@@ -45,10 +45,8 @@ class PostController extends Controller
 
     public function view(){
         $posts = DB::table('users')->join('posts','users.id','=','posts.user_id')
-                                          ->select('posts.*','users.*')->get();
-        $disCtr = Like::where([
-            'post_id' => $posts->id
-        ])->count();
+                                          ->select('posts.*','posts.id as pos','users.*')->get();
+        $disCtr = Like::where('post_id')->count();
         return view('posts.view',compact('posts','disCtr'));
     }
 
@@ -104,7 +102,7 @@ class PostController extends Controller
 
      public function dislike($id){
         $logged_user = Auth::user()->id;
-        $dlike_user = Like()::where([
+        $dlike_user = Like::where([
             'user_id' => $logged_user,
             'post_id' => $id
         ])->first();
