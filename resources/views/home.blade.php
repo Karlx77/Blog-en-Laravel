@@ -1,115 +1,86 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <title>Laravel</title>
+@section('content')
+    <style type="text/css">
+        .avatar{
+            border-radius: 100%;
+            max-width: 100px;
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-    <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
         }
-
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-        .navbar {
-            min-height: 80px;
-        }
-
     </style>
-</head>
-<body  background="{{url('imagenes/fondo2.png')}}" style=" background-color: #ECE0E0;">
-<div class="">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{route('welcome')}}">COOPER</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card">
+                    @if(count($errors)>0)
+                        @foreach($errors->all() as $error)
+                            <div class="alert alert-danger">
+                                {{ $error }}
+                            </div>
+                        @endforeach
+                    @endif
+                    @if(session('response'))
+                        <div class="alert alert-success">
+                            {{session('response')}}
+                        </div>
+                    @endif
+                    <div class="card-header">Dashboard</div>
+                    <div class="card-body row">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route('welcome')}}">Inicio <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('masDeMi')}}">Mas de mi</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="{{route('articulosInteresantes')}}">Articulos Interesantes</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</div>
-<div id ="pagina">
-    <div class="row">
-        <div class="col-md-6"><br><br><br><br>
-            <img class="rounded mx-auto d-block" src="{{url('imagenes/doctor.png')}}" style="height:400px;width:400px; ">
-        </div>
-        <div class="col-md-4" style="background-color: rgba(0, 0, 0, 0.5);color:white;"><br><br><br><br>
-            <br><br>
-            <h1>Hola, soy Cooper</h1><br>
-            <h3>Mi trabajo es ayudar a identificar cualquier síntoma médico sobre el Covid-19 que puedas tener y mantenerte saludable.</h3>
+                        <div class="col-md-4">
+                            @if(!empty($profile))
+                                <img class="rounded mx-auto d-block" src="{{ $profile->profile_pic }}" class="avatar" alt=""  width="150px" height="150px">
+                                <p class="lead text-center">{{ $profile->name }}</p>
+                                <p class="text-center">{{ $profile->designation }}</p>
+                            @else
+                                <img src="{{ url('images/usuario.png') }}" class="avatar" alt=""  width="150px" height="150px"><br>
+                            @endif
+                        </div>
+                        <div class="col-md-8">
+                            @if(count($posts)>0)
+                                @foreach($posts->all() as $post)
+                                    <h4 class="text-center">{{ $post->post_title }}</h4>
+                                    <img class="rounded mx-auto d-block" src="{{ $post->post_image }}" alt="" width="450" height="450">
+                                    <p class="text-center">{{ substr($post->post_body, 0, 150 )}}</p>
+                                    <ul class="nav nav-pills ">
+                                        <li role="presentation" class="">
+                                            <a class="btn btn-link" href="{{route('posts.view',$post)}}">
+                                                <span class=" fa fa-eye"> VIEW</span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a class="btn btn-link" href="{{route('posts.edit',$post)}}">
+                                                <span class="fa fa-edit"> EDIT</span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <form action="{{route('posts.delete',$post)}}" method="post" class="">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-link fa fa-trash"> ELIMINAR</button>
+
+                                            </form>
+
+                                        </li>
+                                    </ul>
+                                    <cite style="float: left">Posted on: {{date('M j, Y H:i', strtotime($post->updated_at))}} </cite>
+                                    <hr>
+                                @endforeach
+                            @else
+                                <p>No Post Available</p>
+                            @endif
+                            <br>
+                            {{$posts->links()}}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-</div>
-<main class="container-fluid">
-    @yield('content')
-</main>
-@yield('principal')
-
-</body>
-</html>
-
-
+@endsection
