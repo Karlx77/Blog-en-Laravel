@@ -14,14 +14,6 @@
                 <div class="card">
                     <div class="card-header">Post View</div>
                     <div class="card-body row">
-
-                        <div class="col-md-4">
-                            <ul>
-                                @foreach($categories as $item)
-                                <li class="list-group-item"><a href="{{route('posts.category',$item)}}" class=" btn btn-link">{{$item->category}}</a> </li>
-                                @endforeach
-                            </ul>
-                        </div>
                         <div class="col-md-8">
                             @if(count($posts)>0)
                                 @foreach($posts->all() as $post)
@@ -30,7 +22,7 @@
                                     <p>{{$post->post_body}}</p>
                                     <ul class="nav nav-pills">
                                         <li role="presentation">
-                                            <form action="{{}}"></form>
+                                            <form action=""></form>
                                             <a class="btn btn-link" href="{{url('like',$post)}}">
                                                 <span class=" fa fa-thumbs-up"> Like({{$likeCtr}})</span>
                                             </a>

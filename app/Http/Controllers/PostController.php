@@ -16,15 +16,15 @@ use Illuminate\Support\Facades\URL;
 class PostController extends Controller
 {
     public function post(){
-        $category =  Category::all();
-        return view('posts.post', compact('category'));
+//        $category =  Category::all();
+        return view('posts.post');
     }
 
     public function addPost(Request $request){
         $this->validate($request,[
             'post_title'=>'required',
             'post_body'=>'required',
-            'category_id'=>'required',
+//            'category_id'=>'required',
             'post_image'=>'required',
         ]);
 
@@ -32,7 +32,6 @@ class PostController extends Controller
         $post->user_id =Auth::user()->id;
         $post->post_title = $request->input('post_title');
         $post->post_body = $request->input('post_body');
-        $post->category_id = $request->input('category_id');
         if (Input::hasFile('post_image')){
             $file = Input::file('post_image');
             $file->move(public_path(). '/posts/', $file->getClientOriginalName());
@@ -52,23 +51,22 @@ class PostController extends Controller
         $disCtr = Dislike::where([
             'post_id' => $likePost->id
         ])->count();
-        $categories = Category::orderBy('category','asc')->get();
-        return view('posts.view',compact('posts','categories','likeCtr','disCtr'));
+//        $categories = Category::orderBy('category','asc')->get();
+        return view('posts.view',compact('posts','likeCtr','disCtr'));
     }
 
     public function edit($post_id){
-        $category = Category::all();
+//        $category = Category::all();
         $posts = Post::findOrFail($post_id);
-        $categories = Category::findOrFail($posts->category_id);
 
-        return view('posts.update',compact('category','posts','categories'));
+        return view('posts.update',compact('posts'));
     }
 
     public function editPost(Request $request, $post_id){
         $this->validate($request,[
             'post_title'=>'required',
             'post_body'=>'required',
-            'category_id'=>'required',
+//            'category_id'=>'required',
             'post_image'=>'required',
         ]);
 
@@ -76,7 +74,7 @@ class PostController extends Controller
         $post->user_id =Auth::user()->id;
         $post->post_title = $request->input('post_title');
         $post->post_body = $request->input('post_body');
-        $post->category_id = $request->input('category_id');
+//        $post->category_id = $request->input('category_id');
         if (Input::hasFile('post_image')){
             $file = Input::file('post_image');
             $file->move(public_path(). '/posts/', $file->getClientOriginalName());
