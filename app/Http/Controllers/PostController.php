@@ -48,9 +48,9 @@ class PostController extends Controller
         $likeCtr = Like::where([
             'post_id'=> $likePost->id
         ])->count();
-        $disCtr = Dislike::where([
-            'post_id' => $likePost->id
-        ])->count();
+//        $disCtr = Dislike::where([
+//            'post_id' => $likePost->id
+//        ])->count();
 //        $categories = Category::orderBy('category','asc')->get();
         return view('posts.view',compact('posts','likeCtr','disCtr'));
     }
