@@ -30,7 +30,7 @@ Route::get('/category','CategoryController@category');
 Route::post('/addCategory','CategoryController@addCategory');
 Route::post('/addProfile','ProfileController@addProfile');
 Route::post('/addPost','PostController@addPost');
-Route::get('/view/{id}','PostController@view')->name('posts.view');
+Route::get('/view','PostController@view')->name('posts.view');
 Route::get('/edit/{id}','PostController@edit')->name('posts.edit');
 Route::put('/edit/{id}','PostController@editPost')->name('posts.update');
 Route::delete('/delete/{id}','PostController@deletePost')->name('posts.delete');

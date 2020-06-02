@@ -7,6 +7,7 @@ use App\Like;
 use App\Post;
 use App\Category;
 use DemeterChain\C;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -42,17 +43,19 @@ class PostController extends Controller
         return redirect('/home')->with('response','Post Published Successfully');
     }
 
-    public function view($post_id){
-        $posts = Post::where('id','=', $post_id)->get();
-        $likePost = Post::findOrFail($post_id);
+    public function view(){
+//        $post_id=
+        $posts = DB::table('users')->join('posts','users.id','=','posts.user_id')
+                                          ->select('posts.*','users.*')->get();
+//        $likePost = Post::findOrFail($post_id);
 //        $likeCtr = Like::where([
 //            'post_id'=> $likePost->id
 //        ])->count();
-        $disCtr = Like::where([
-            'post_id' => $likePost->id
-        ])->count();
+//        $disCtr = Like::where([
+//            'post_id' => $likePost->id
+//        ])->count();
 //        $categories = Category::orderBy('category','asc')->get();
-        return view('posts.view',compact('posts','disCtr'));
+        return view('posts.view',compact('posts'));
     }
 
     public function edit($post_id){
