@@ -44,18 +44,12 @@ class PostController extends Controller
     }
 
     public function view(){
-//        $post_id=
         $posts = DB::table('users')->join('posts','users.id','=','posts.user_id')
                                           ->select('posts.*','users.*')->get();
-//        $likePost = Post::findOrFail($post_id);
-//        $likeCtr = Like::where([
-//            'post_id'=> $likePost->id
-//        ])->count();
-//        $disCtr = Like::where([
-//            'post_id' => $likePost->id
-//        ])->count();
-//        $categories = Category::orderBy('category','asc')->get();
-        return view('posts.view',compact('posts'));
+        $disCtr = Like::where([
+            'post_id' => $posts->id
+        ])->count();
+        return view('posts.view',compact('posts','disCtr'));
     }
 
     public function edit($post_id){

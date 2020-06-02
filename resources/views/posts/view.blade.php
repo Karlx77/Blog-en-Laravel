@@ -39,7 +39,7 @@
                                             </a>
                                         </li>
                                     </ul>
-{{--                                    <span>{{$disCtr}} me gusta</span>--}}
+                                    <span>{{$disCtr}} me gusta</span>
                                 </div>
                                 @endforeach
                                 @else
