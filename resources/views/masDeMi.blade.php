@@ -8,8 +8,11 @@
         </div>
         <div class="col-md-4" style="background-color: rgba(0, 0, 0, 0.5);color:white;"><br><br><br><br>
             <br><br>
-            <h1>Hola, soy Cooper</h1><br>
-            <h3>Mi trabajo es ayudar a identificar cualquier síntoma médico sobre el Covid-19 que puedas tener y mantenerte saludable.</h3>
+            <h3>¿Aun no me conoces?</h3><br>
+            <h5>Me llamo Cooper, y soy un chatbot dotado con inteligencia artificial.
+               Mis instructoras me han enseñado a identificar todos los sintomas relacionados con el Covid-19.
+               Si necesitas respuestas, ¡no dudes en preguntarme!.
+            </h5>
         </div>
     </div>
 
