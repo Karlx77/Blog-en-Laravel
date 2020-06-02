@@ -105,30 +105,7 @@ class PostController extends Controller
         return view('categories.categoriesPosts',compact('categories','posts'));
     }
 
-    public function like(Request $request){
-        dd($request);
-        $logged_user = Auth::user()->id;
-        $like_user = Like::where([
-            'user_id' => $logged_user,
-            'post_id' => $id
-        ])->first();
-
-        if (empty($like_user -> user_id)){
-            $user_id = Auth::user()->id;
-            $email = Auth::user()->email;
-            $post_id=$id;
-            $like = new Like();
-            $like->user_id = $user_id;
-            $like->email = $email;
-            $like->post_id = $post_id;
-            $like->save();
-            return view('/view/',$id);
-        }
-        else{
-            return redirect('/view/',$id);
-        }
-    }
-    public function dislike($id){
+     public function dislike($id){
         $logged_user = Auth::user()->id;
         $dlike_user = Dislike::where([
             'user_id' => $logged_user,

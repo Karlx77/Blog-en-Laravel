@@ -22,14 +22,8 @@
                                     <p>{{$post->post_body}}</p>
                                     <ul class="nav nav-pills">
                                         <li role="presentation">
-                                            <form action=""></form>
-                                            <a class="btn btn-link" href="{{url('like',$post)}}">
-                                                <span class=" fa fa-thumbs-up"> Like({{$likeCtr}})</span>
-                                            </a>
-                                        </li>
-                                        <li role="presentation">
                                             <a class="btn btn-link" href="{{url('dislike',$post)}}">
-                                                <span class="fa fa-thumbs-down"> Dislike({{$disCtr}})</span>
+                                                <span><img src="{{url('images/like.png')}}" alt="" style="height:35px;width:35px; ">({{$disCtr}})</span>
                                             </a>
                                         </li>
                                         <li role="presentation">
