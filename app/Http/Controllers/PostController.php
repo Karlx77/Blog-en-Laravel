@@ -52,15 +52,9 @@ class PostController extends Controller
             $disCtr = DB::select("select count(likes.id) as likes from likes where likes.post_id = $post->idPost;");
             $comment = DB::select("select count(c.id) as comments from comments c where c.post_id = $post->idPost;");
         }
-<<<<<<< HEAD
-        return view('posts.view',compact('posts','disCtr'));
-
-//           dd($var);
-=======
 //           $var = $disCtr;
 //           dd($var);
         return view('posts.view',compact('posts','disCtr','comment'));
->>>>>>> f765e78e8fcd7e89b55155e697c00d22b63c5b5b
     }
 
     public function edit($post_id){

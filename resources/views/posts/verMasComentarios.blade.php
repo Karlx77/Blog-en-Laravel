@@ -8,15 +8,9 @@
             <div class="card-body">
                 @if(count($posts)>0)
                     @foreach($posts->all() as $post)
-<<<<<<< HEAD
-                        <div class="container">
-                            <img class="align-content-center" src="{{ $post->post_image }}" style="width:400px; height:450px;">
-                        </div>
-=======
 {{--                        <div>--}}
                             <img class="img img-responsive" src="{{ $post->post_image }}" style="width:500px ;height:555px ; margin: 0px;">
 {{--                        </div>--}}
->>>>>>> f765e78e8fcd7e89b55155e697c00d22b63c5b5b
                     @endforeach
                 @else
                     <p>No Post Available</p>
