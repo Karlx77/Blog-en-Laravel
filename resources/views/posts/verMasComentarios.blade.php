@@ -37,8 +37,10 @@
 {{--                    @endforeach--}}
                 </div>
                 <div class="col-md-9">
+
                     @foreach($comments as $comment)
-                        <span>{{$comment->comments}}</span>
+                        <p>{{$comment->name}}</p>
+                        <p>{{$comment->comments}}</p>
                     @endforeach
                 </div>
             </div>
