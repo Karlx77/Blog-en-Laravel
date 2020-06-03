@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-md-9">
                     @foreach($comments as $comment)
-                        <span>{{$comment->comments}}</span><br>
+                        <span>{{$comment->comments}}</span>
                     @endforeach
                 </div>
             </div>
