@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Dislike;
 use App\Like;
 use App\Post;
@@ -138,5 +139,16 @@ class PostController extends Controller
                     ->select('comments.*','users.*','profiles.*')
                     ->where('posts.id',$id)->get();
         return view('posts.verMasComentarios',compact('posts','disCtr','profile','comments'));
+    }
+
+    public function comentar($id,Request $request){
+            $user_id = Auth::user()->id;
+            $comentario = new Comment();
+            $comentario->user_id = $user_id;
+            $comentario->post_id = $id;
+            $comentario->comments = $request->input('comentario');
+            $comentario->save();
+
+            return redirect(route('verMasComentarios',$id));
     }
 }

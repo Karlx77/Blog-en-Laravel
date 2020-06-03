@@ -15,7 +15,6 @@
                 @else
                     <p>No Post Available</p>
                 @endif
-
             </div>
         </div>
         <div class="card col-md-4">
@@ -43,9 +42,39 @@
                             </li>
                             @endforeach
                         </ul>
+
+            <div class="card-body row" id="comentario">
+                <div class="col-md-3">
+{{--                    @foreach($comments as $comment)--}}
+                    {{--                        <span>{{$comment->comments}}</span>--}}
+                    {{--                    @endforeach--}}
+                </div>
+                <div class="col-md-9">
+
+                    @foreach($comments as $comment)
+                        <p>{{$comment->name}}</p>
+                        <p>{{$comment->comments}}</p>
+                    @endforeach
+                </div>
+            </div>
+            <div class="card-footer">
+                @if(count($posts)>0)
+                    @foreach($posts->all() as $post)
+                        <form action="{{route('comentar',$post->idPost)}}" method="post">
+                            @csrf
+                            <div class="form-group row">
+                                <input type="text" name="comentario" class="form-control col-md-9">
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                </div>
+                            </div>
+                        </form>
+                    @endforeach
+                @endif
             </div>
         </div>
-         <div class="col-md-1"></div>
+         <div class="col-md-1">
+         </div>
      </div>
  </div>
 @endsection
