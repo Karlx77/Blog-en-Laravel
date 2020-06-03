@@ -30,7 +30,7 @@
                 @endforeach
             </div>
 
-<pre class="alt2" style="height:400px">
+            <pre style="height:400px;white-space: normal">
             <div class="card-body " id="comentario">
                         <ul>
                             @foreach($comments as $comment)
