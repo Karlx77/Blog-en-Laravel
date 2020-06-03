@@ -40,7 +40,9 @@
                                                                     </a>
                                                                 </li>
                                                             </ul>
-                                                            <span>{{$disCtr}} me gusta</span>
+                                                            @foreach($disCtr as $item)
+                                                               <span>{{$item->likes}} me gusta</span>
+                                                            @endforeach
                                                         </div>
                                                     </small></p>
                                             </div>

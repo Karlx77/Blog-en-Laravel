@@ -48,8 +48,10 @@ class PostController extends Controller
         $posts = DB::table('users')->join('posts','users.id','=','posts.user_id')
                                           ->select('posts.*','posts.id as idPost','users.*')->get();
         foreach ($posts as $post) {
-            $disCtr = Like::where('post_id',$post->idPost)->count();
+            $disCtr = DB::select("select count(likes.id) as likes from likes where likes.post_id = $post->idPost;");
         }
+           $var = $disCtr;
+//           dd($var);
         return view('posts.view',compact('posts','disCtr'));
     }
 
