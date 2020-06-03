@@ -135,9 +135,9 @@ class PostController extends Controller
 
         $comments = DB::table('comments')->join('users','comments.user_id','=','users.id')
                     ->join('posts','comments.post_id','=','posts.id')
-                    ->select('comments.*','users.*')
+                    ->join('profiles','users.id','=','profiles.user_id')
+                    ->select('comments.*','users.*','profiles.*')
                     ->where('posts.id',$id)->get();
-
         return view('posts.verMasComentarios',compact('posts','disCtr','profile','comments'));
     }
 

@@ -29,19 +29,21 @@
                     </div>
                 @endforeach
             </div>
-            <pre class="alt2" style="height:400px">
-                <div class="card-body row" id="comentario">
-                <div class="col-md-3">
-{{--                    @foreach($comments as $comment)--}}
-                    {{--                        <span>{{$comment->comments}}</span>--}}
-                    {{--                    @endforeach--}}
-                </div>
-                <div class="col-md-9">
-                    @foreach($comments as $comment)
-                        <p>{{$comment->name}}</p>
-                        <p>{{$comment->comments}}</p>
-                    @endforeach
-                </div>
+
+<pre class="alt2" style="height:400px">
+            <div class="card-body " id="comentario">
+                        <ul>
+                            @foreach($comments as $comment)
+                            <li class="row">
+                                <div class="col-md-3">
+                                    <p> <img class="rounded" src="{{$comment->profile_pic}}" alt="" style="height:45px;width:45px ; "></p>
+                                </div>
+                                <div class="col-md-9">
+                                    <p><b>{{$comment->name}}:  </b> {{$comment->comments}}</p>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
             </div>
             </pre>
             <div class="card-footer">
