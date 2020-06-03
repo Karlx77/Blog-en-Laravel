@@ -45,8 +45,10 @@ class PostController extends Controller
 
     public function view(){
         $posts = DB::table('users')->join('posts','users.id','=','posts.user_id')
-                                          ->select('posts.*','posts.id as pos','users.*')->get();
-        $disCtr = Like::where('post_id')->count();
+                                          ->select('posts.*','posts.id as idPost','users.*')->get();
+        foreach ($posts as $post) {
+            $disCtr = Like::where('post_id',$post->idPost)->count();
+        }
         return view('posts.view',compact('posts','disCtr'));
     }
 
@@ -95,8 +97,6 @@ class PostController extends Controller
         ->select('posts.*','categories.*')
         ->where(['categories.id'=>$id])
         ->get();
-////        return $posts;
-////        exit();
         return view('categories.categoriesPosts',compact('categories','posts'));
     }
 
@@ -116,10 +116,27 @@ class PostController extends Controller
             $dislike->email = $email;
             $dislike->post_id = $post_id;
             $dislike->save();
-            return redirect('/view/',$id);
+            return redirect('/view/');
         }
         else{
-            return redirect('/view/',$id);
+            return redirect('/view/');
         }
+    }
+    public function verMasComentarios($id){
+        $posts = DB::table('users')->join('posts','users.id','=','posts.user_id')
+            ->select('posts.*','posts.id as idPost','users.*')->where('posts.id',$id)->get();
+        $profile = DB::table('users')->join('profiles','users.id','=','profiles.user_id')
+            ->join('posts','users.id','=','posts.user_id')
+            ->select('profiles.*','users.*')->where('posts.id',$id)->get();
+        foreach ($posts as $post) {
+            $disCtr = Like::where('post_id',$post->idPost)->count();
+        }
+
+        $comments = DB::table('comments')->join('users','comments.user_id','=','users.id')
+                    ->join('posts','comments.post_id','=','posts.id')
+                    ->select('comments.*','users.*')
+                    ->where('posts.id',$id)->get();
+
+        return view('posts.verMasComentarios',compact('posts','disCtr','profile','comments'));
     }
 }
