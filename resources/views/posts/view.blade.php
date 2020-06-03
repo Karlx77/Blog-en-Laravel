@@ -41,6 +41,13 @@
                                                             </a>
                                                         </li>
                                                     </ul>
+{{--                                                    <form action="" method="post">--}}
+{{--                                                        <label for="">Comentar</label>--}}
+{{--                                                        <textarea rows="2" type="text"></textarea>--}}
+{{--                                                        <a class="btn btn-link" href="">--}}
+{{--                                                            <button type="submit" class="btn btn-primary">Enviar</button>--}}
+{{--                                                        </a>--}}
+{{--                                                    </form>--}}
                                                 </div>
                                             </small></p>
                                     </div>
