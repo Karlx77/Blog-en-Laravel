@@ -13,4 +13,7 @@ class InicioController extends Controller
     public function informacion(){
         return view('masDeMi');
     }
+    public function chat(){
+        return view('chat');
+    }
 }

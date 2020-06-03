@@ -41,3 +41,4 @@ Route::get('/dislike/{id}','PostController@dislike')->name('dislike');
 Route::get('/verMasComentarios/{id}','PostController@verMasComentarios')->name('verMasComentarios');
 
 Route::post('comentar/{id}','PostController@comentar')->name('comentar');
+Route::get('/chat','InicioController@chat')->name('chat');
