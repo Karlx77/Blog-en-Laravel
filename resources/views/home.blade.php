@@ -34,12 +34,12 @@
 
                         <div class="col-md-4">
                             @if(!empty($profile))
-                                <img class="rounded mx-auto d-block" src="{{ $profile->profile_pic }}" class="avatar" alt=""  width="150px" height="150px">
+                                <img class="rounded mx-auto d-block avatar" src="{{ $profile->profile_pic }}" alt=""  width="150px" height="150px">
                                 <p class="lead text-center">{{ $profile->name }}</p>
                                 <p class="text-center">{{ $profile->designation }}</p>
-                            @else
+                                    @else
                                 <img src="{{ url('images/usuario.png') }}" class="avatar" alt=""  width="150px" height="150px"><br>
-                            @endif
+                                    @endif
                         </div>
                         <div class="col-md-8">
                             @if(count($posts)>0)
