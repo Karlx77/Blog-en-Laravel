@@ -29,7 +29,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="card-body ">
+            <div class="card-body " id="comentario">
                         <ul>
                             @foreach($comments as $comment)
                             <li class="row">
@@ -42,20 +42,6 @@
                             </li>
                             @endforeach
                         </ul>
-
-            <div class="card-body row" id="comentario">
-                <div class="col-md-3">
-{{--                    @foreach($comments as $comment)--}}
-                    {{--                        <span>{{$comment->comments}}</span>--}}
-                    {{--                    @endforeach--}}
-                </div>
-                <div class="col-md-9">
-
-                    @foreach($comments as $comment)
-                        <p>{{$comment->name}}</p>
-                        <p>{{$comment->comments}}</p>
-                    @endforeach
-                </div>
             </div>
             <div class="card-footer">
                 @if(count($posts)>0)
