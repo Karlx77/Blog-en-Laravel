@@ -50,15 +50,14 @@ class PostController extends Controller
         foreach ($posts as $post) {
             $disCtr = DB::select("select count(likes.id) as likes from likes where likes.post_id = $post->idPost;");
         }
-           $var = $disCtr;
-//           dd($var);
         return view('posts.view',compact('posts','disCtr'));
+
+//           dd($var);
     }
 
     public function edit($post_id){
 //        $category = Category::all();
         $posts = Post::findOrFail($post_id);
-
         return view('posts.update',compact('posts'));
     }
 
@@ -83,7 +82,6 @@ class PostController extends Controller
         $post->post_image = $url;
         $post->save();
         return redirect('/home')->with('response','Post Edited Successfully');
-
     }
 
     public function deletePost($id){

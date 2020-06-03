@@ -8,7 +8,7 @@
             <div class="card-body">
                 @if(count($posts)>0)
                     @foreach($posts->all() as $post)
-                        <div class="container">{{$post->idPost}}
+                        <div class="container">
                             <img class="align-content-center" src="{{ $post->post_image }}" style="width:400px; height:450px;">
                         </div>
                     @endforeach

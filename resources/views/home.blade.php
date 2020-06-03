@@ -5,7 +5,6 @@
         .avatar{
             border-radius: 100%;
             max-width: 100px;
-
         }
     </style>
     <div class="container">
@@ -34,7 +33,7 @@
 
                         <div class="col-md-4">
                             @if(!empty($profile))
-                                <img class="rounded mx-auto d-block avatar" src="{{ $profile->profile_pic }}" alt=""  width="150px" height="150px">
+                                <img class="rounded mx-auto d-block avatar" src="{{ $profile->profile_pic}}" alt=""  width="150px" height="150px">
                                 <p class="lead text-center">{{ $profile->name }}</p>
                                 <p class="text-center">{{ $profile->designation }}</p>
                                     @else
