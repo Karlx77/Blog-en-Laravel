@@ -29,21 +29,21 @@
                     </div>
                 @endforeach
             </div>
-
-            <div class="card-body row" id="comentario">
+            <pre class="alt2" style="height:400px">
+                <div class="card-body row" id="comentario">
                 <div class="col-md-3">
 {{--                    @foreach($comments as $comment)--}}
                     {{--                        <span>{{$comment->comments}}</span>--}}
                     {{--                    @endforeach--}}
                 </div>
                 <div class="col-md-9">
-
                     @foreach($comments as $comment)
                         <p>{{$comment->name}}</p>
                         <p>{{$comment->comments}}</p>
                     @endforeach
                 </div>
             </div>
+            </pre>
             <div class="card-footer">
                 @if(count($posts)>0)
                     @foreach($posts->all() as $post)
