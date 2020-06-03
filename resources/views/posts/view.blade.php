@@ -23,7 +23,10 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                                <h5 class="card-title">{{$post->name}}</h5>
+                                                <h5 class="card-title m-1 "><img class="rounded-circle" src="{{$post->profile_pic}}" alt="" style="height: 45px;width: 45px;"> {{$post->name}}
+                                                </h5>
+
+
                                                 <h4>{{ $post->post_title }}</h4>
                                                 <p class="card-text">{{$post->post_body}}</p>
                                                 <p class="card-text"><small class="text-muted">
@@ -41,7 +44,10 @@
                                                                 </li>
                                                             </ul>
                                                             @foreach($disCtr as $item)
-                                                               <span>{{$item->likes}} me gusta</span>
+                                                               <span class="m-1">{{$item->likes}} me gusta</span>
+                                                            @endforeach
+                                                            @foreach($comment as $item)
+                                                                <span>{{$item->comments}} comentarios</span>
                                                             @endforeach
                                                         </div>
                                                     </small></p>
