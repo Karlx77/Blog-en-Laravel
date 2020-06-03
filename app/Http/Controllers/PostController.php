@@ -137,7 +137,7 @@ class PostController extends Controller
                     ->join('posts','comments.post_id','=','posts.id')
                     ->join('profiles','users.id','=','profiles.user_id')
                     ->select('comments.*','users.*','profiles.*')
-                    ->where('posts.id',$id)->get();
+                    ->where('posts.id',$id)->orderBy('comments.id','desc')->get();
         return view('posts.verMasComentarios',compact('posts','disCtr','profile','comments'));
     }
 
