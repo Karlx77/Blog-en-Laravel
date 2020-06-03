@@ -25,15 +25,14 @@
                                             <div class="card-body">
                                                 <img src="{{ $post->post_image }}" alt="" width="350" height="350">
                                             </div>
-                                            <div class="card-footer ">
                                                 <h4>{{ $post->post_title }}</h4>
                                                 <p>{{$post->post_body}}</p>
                                                 <ul class="nav nav-pills">
-                                                <li role="presentation">
-                                            <a class="btn btn-link" href="{{route('dislike',$post->pos)}}">
-                                                <img src="{{url('images/like.png')}}" alt="" style="height:35px;width:35px; ">
-                                            </a>
-                                        </li>
+                                                    <li role="presentation">
+                                                        <a class="btn btn-link" href="{{route('dislike',$post->pos)}}">
+                                                            <img src="{{url('images/like.png')}}" alt="" style="height:35px;width:35px; ">
+                                                        </a>
+                                                    </li>
                                                     <li role="presentation">
                                                         <a class="btn btn-link" href="">
                                                             <img src="{{url('images/message.png')}}" alt="" style="height:35px;width:35px; ">
@@ -41,7 +40,13 @@
                                                     </li>
                                                 </ul>
                                                 {{--                                    <span>{{$disCtr}} me gusta</span>--}}
-                                            </div>
+                                            <form action="" method="post">
+                                                {{--                                                    <label for="">Comentar</label>--}}
+                                                <textarea rows="2" type="text"></textarea>
+                                                <a class="btn btn-link" href="">
+                                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                                </a>
+                                            </form>
                                         </div>
                             </div><br>
                             @endforeach
