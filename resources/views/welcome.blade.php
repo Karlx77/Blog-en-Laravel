@@ -12,6 +12,11 @@
             <h3>Mi trabajo es ayudar a identificar cualquier síntoma médico sobre el Covid-19 que puedas tener y mantenerte saludable.</h3>
         </div>
     </div>
-
+    <iframe
+        allow="microphone;"
+        width="350"
+        height="430"
+        src="https://console.dialogflow.com/api-client/demo/embedded/243c2e94-6247-4d90-9339-32119605f8f1">
+    </iframe>
 </div>
 @endsection
