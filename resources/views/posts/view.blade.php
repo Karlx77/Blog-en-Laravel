@@ -18,7 +18,8 @@
                             <div class="row row-cols-1 row-cols-md-1 ">
                                 @if(count($posts)>0)
                                     @foreach($posts->all() as $post)
-                                        <div class="card align-content-center col-md-6">
+{{--                                        <div class="col-md-2"></div>--}}
+                                        <div class="card align-content-center col-md-8">
                                             <div class="card-header ">
                                                 <h3>{{$post->name}}</h3>
                                             </div>
@@ -30,17 +31,17 @@
                                                 <p>{{$post->post_body}}</p>
                                                 <ul class="nav nav-pills">
                                                 <li role="presentation">
-                                            <a class="btn btn-link" href="{{route('dislike',$post->pos)}}">
+                                            <a class="btn btn-link" href="{{route('dislike',$post->idPost)}}">
                                                 <img src="{{url('images/like.png')}}" alt="" style="height:35px;width:35px; ">
                                             </a>
                                         </li>
                                                     <li role="presentation">
-                                                        <a class="btn btn-link" href="">
+                                                        <a class="btn btn-link" href="{{route('verMasComentarios',$post->idPost)}}">
                                                             <img src="{{url('images/message.png')}}" alt="" style="height:35px;width:35px; ">
                                                         </a>
                                                     </li>
                                                 </ul>
-                                                {{--                                    <span>{{$disCtr}} me gusta</span>--}}
+                                                   <span>{{$disCtr}} me gusta</span>
                                             </div>
                                         </div>
                             </div><br>
