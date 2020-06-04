@@ -8,9 +8,9 @@
             <div class="card-body">
                 @if(count($posts)>0)
                     @foreach($posts->all() as $post)
-                        <div class="container">{{$post->idPost}}
-                            <img class="align-content-center" src="{{ $post->post_image }}" style="width:400px; height:450px;">
-                        </div>
+{{--                        <div>--}}
+                            <img class="img img-responsive" src="{{ $post->post_image }}" style="width:500px ;height:555px ; margin: 0px;">
+{{--                        </div>--}}
                     @endforeach
                 @else
                     <p>No Post Available</p>
@@ -21,7 +21,7 @@
             <div class="card-header row">
                 @foreach($profile as $profiles)
                     <div class="col-md-3">
-                        <img class="rounded" src="{{$profiles->profile_pic}}" alt="" style="height:50px;width:50px; ">
+                        <img class="rounded-circle" src="{{$profiles->profile_pic}}" alt="" style="height:50px;width:50px; ">
                     </div>
                     <div class="col-md-5">
                         <h4>{{$profiles->name}}</h4>
@@ -36,7 +36,7 @@
                             @foreach($comments as $comment)
                             <li class="row">
                                 <div class="col-md-3">
-                                    <p> <img class="rounded" src="{{$comment->profile_pic}}" alt="" style="height:45px;width:45px ; "></p>
+                                    <p> <img class="rounded-circle" src="{{$comment->profile_pic}}" alt="" style="height:45px;width:45px ; "></p>
                                 </div>
                                 <div class="col-md-9">
                                     <p><b>{{$comment->name}}:  </b> {{$comment->comments}}</p>

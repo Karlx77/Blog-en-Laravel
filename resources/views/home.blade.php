@@ -34,7 +34,7 @@
 
                         <div class="col-md-4">
                             @if(!empty($profile))
-                                <img class="rounded mx-auto d-block avatar" src="{{ $profile->profile_pic }}" alt=""  width="150px" height="150px">
+                                <img class="rounded-circle mx-auto  d-block avatar" src="{{ $profile->profile_pic }}" alt=""  width="150px" height="150px">
                                 <p class="lead text-center">{{ $profile->name }}</p>
                                 <p class="text-center">{{ $profile->designation }}</p>
                                     @else
@@ -42,38 +42,49 @@
                                     @endif
                         </div>
                         <div class="col-md-8">
-                            @if(count($posts)>0)
-                                @foreach($posts->all() as $post)
-                                    <h4 class="text-center">{{ $post->post_title }}</h4>
-                                    <img class="rounded mx-auto d-block" src="{{ $post->post_image }}" alt="" width="450" height="450">
-                                    <p class="text-center">{{ substr($post->post_body, 0, 150 )}}</p>
+                            <div class="row">
+                                @if(count($posts)>0)
+                                    @foreach($posts->all() as $post)
+                                <div class="card-body col-md-7">
+                                      <img class="rounded mx-auto d-block" src="{{ $post->post_image }}" alt="" width="400" height="300">
+
+                                </div>
+                                <div class="card-body col-md-5"><br><br>
+                                    <h4 class="">{{ $post->post_title }}</h4>
+                                    <p class="">{{ $post->post_body}}</p>
                                     <ul class="nav nav-pills ">
-                                        <li role="presentation" class="">
-                                            <a class="btn btn-link" href="{{route('posts.view',$post)}}">
-                                                <span class=" fa fa-eye"> VIEW</span>
-                                            </a>
-                                        </li>
                                         <li role="presentation">
-                                            <a class="btn btn-link" href="{{route('posts.edit',$post)}}">
-                                                <span class="fa fa-edit"> EDIT</span>
+                                            <a class="btn btn-link " href="{{route('posts.edit',$post)}}">
+                                                <img src="{{url('images/update.png')}}" alt="" style="width:45px;height: 45px;">
                                             </a>
                                         </li>
                                         <li role="presentation">
                                             <form action="{{route('posts.delete',$post)}}" method="post" class="">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button type="submit" class="btn btn-link fa fa-trash"> ELIMINAR</button>
-
+{{--                                                <a type="submit" class="btn btn-link">--}}
+                                                <button class="btn btn-link" >
+                                                   <img src="{{url('images/delete.png')}}" alt="" style="width:45px;height: 45px;">
+                                                </button>
+{{--                                                </a>--}}
                                             </form>
-
                                         </li>
                                     </ul>
-                                    <cite style="float: left">Posted on: {{date('M j, Y H:i', strtotime($post->updated_at))}} </cite>
-                                    <hr>
+                                    @foreach($disCtr as $item)
+                                        @if($item->likes ==1)
+                                            <span> Les gusta a {{$item->likes}} persona</span>
+                                        @else
+                                            <span> Les gusta a {{$item->likes}} personas</span>
+                                        @endif
+                                    @endforeach
+                                    <cite style="float: left">Posted on: {{date('M j, Y H:i', strtotime($post->updated_at))}} </cite> <br>
+
+                                </div>
                                 @endforeach
-                            @else
-                                <p>No Post Available</p>
-                            @endif
+                                @else
+                                    <p>No Post Available</p>
+                                @endif
+                            </div>
                             <br>
                             {{$posts->links()}}
 

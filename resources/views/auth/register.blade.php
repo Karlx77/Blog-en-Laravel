@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+        <div class="col-md-8"><br><br>
+            <div class="card" style="background-color: rgba(0, 0, 0, 0.5);color:white;">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">

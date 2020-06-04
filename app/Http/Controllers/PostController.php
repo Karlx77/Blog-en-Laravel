@@ -46,13 +46,15 @@ class PostController extends Controller
 
     public function view(){
         $posts = DB::table('users')->join('posts','users.id','=','posts.user_id')
-                                          ->select('posts.*','posts.id as idPost','users.*')->get();
+                                         ->join('profiles','profiles.user_id','=','users.id')
+                                          ->select('posts.*','posts.id as idPost','users.*','profiles.*')->get();
         foreach ($posts as $post) {
             $disCtr = DB::select("select count(likes.id) as likes from likes where likes.post_id = $post->idPost;");
+            $comment = DB::select("select count(c.id) as comments from comments c where c.post_id = $post->idPost;");
         }
-           $var = $disCtr;
+//           $var = $disCtr;
 //           dd($var);
-        return view('posts.view',compact('posts','disCtr'));
+        return view('posts.view',compact('posts','disCtr','comment'));
     }
 
     public function edit($post_id){

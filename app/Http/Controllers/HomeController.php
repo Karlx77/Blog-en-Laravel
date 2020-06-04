@@ -38,6 +38,12 @@ class HomeController extends Controller
             ->select('profiles.*','users.*','posts.*')->where('posts.user_id',$user_id)->first();
 //        dd($profile);
         $posts = Post::where('posts.user_id',$user_id)->paginate(1);
-        return view('home',compact('profile','posts'));
+        $post = DB::table('users')->join('posts','users.id','=','posts.user_id')
+            ->select('posts.*','posts.id as idPost','users.*')->get();
+        foreach ($post as $item) {
+            $disCtr = DB::select("select count(likes.id) as likes from likes where likes.post_id = $item->idPost;");
+        }
+
+        return view('home',compact('profile','posts','disCtr','post'));
     }
 }
