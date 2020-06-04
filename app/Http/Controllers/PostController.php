@@ -60,7 +60,6 @@ class PostController extends Controller
     public function edit($post_id){
 //        $category = Category::all();
         $posts = Post::findOrFail($post_id);
-
         return view('posts.update',compact('posts'));
     }
 
@@ -85,7 +84,6 @@ class PostController extends Controller
         $post->post_image = $url;
         $post->save();
         return redirect('/home')->with('response','Post Edited Successfully');
-
     }
 
     public function deletePost($id){

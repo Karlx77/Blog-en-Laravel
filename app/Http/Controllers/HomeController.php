@@ -29,13 +29,13 @@ class HomeController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
-//        $profile = DB::table('users')->join('profiles','users.id','=','profiles.user_id')
-//                                          ->select('users.*','profiles.*')
-//                                          ->where(['profiles.user_id'=> $user_id])
-//                                          ->first();
         $profile = DB::table('users')->join('profiles','users.id','=','profiles.user_id')
-            ->join('posts','users.id','=','posts.user_id')
-            ->select('profiles.*','users.*','posts.*')->where('posts.user_id',$user_id)->first();
+                                          ->select('users.*','profiles.*')
+                                          ->where(['profiles.user_id'=> $user_id])
+                                          ->first();
+//        $profile = DB::table('users')->join('profiles','users.id','=','profiles.user_id')
+//            ->join('posts','users.id','=','posts.user_id')
+//            ->select('profiles.*','users.*','posts.*')->where('posts.user_id',$user_id)->first();
 //        dd($profile);
         $posts = Post::where('posts.user_id',$user_id)->paginate(1);
         $post = DB::table('users')->join('posts','users.id','=','posts.user_id')
